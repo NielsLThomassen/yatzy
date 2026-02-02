@@ -282,14 +282,15 @@ function calculate() {
         total += Number(inp.value) || 0;
       }
 
-      if (cat.upper) {
+    if (cat.upper) {
+      if (inp.value !== "") {   // 👈 ONLY count filled fields
         const v = Number(inp.value);
-        if (!isNaN(v)) {
-          upper += v;
-          const baseline = r.baselineDice * cat.face;
-          deltaSum += (v - baseline);
-        }
+        upper += v;
+    
+        const baseline = r.baselineDice * cat.face;
+        deltaSum += (v - baseline);
       }
+    }
     });
 
     categories.forEach((cat, i) => {
